@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhnhn6nqwkf6h"]
+
+[ext_resource type="Texture2D" uid="uid://blwwyypvm5k5b" path="res://Resources/SpaceInvaders.png" id="1_abcvo"]
+[ext_resource type="Script" path="res://Scenes/player.gd" id="1_lhsl7"]
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+collision_layer = 2
+collision_mask = 28
+script = ExtResource("1_lhsl7")
+
+[node name="ShipImage" type="Sprite2D" parent="."]
+texture = ExtResource("1_abcvo")
+region_enabled = true
+region_rect = Rect2(68, 4, 9, 10)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -5, 1, -5, 1, -5, 1, -4, 2, -4, 2, 0, 3, 0, 3, 1, 4, 1, 4, 2, 4, 4, 3, 4, 2, 3, 1, 4, -1, 4, -2, 3, -3, 4, -4, 4, -4, 2, -4, 1, -3, 1, -3, 0, -2, 0, -2, -4, -1, -4, -1, -5)
+
+[node name="LaserEmitter" type="Marker2D" parent="."]
+position = Vector2(0, -5)
+
+[node name="LaserTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]

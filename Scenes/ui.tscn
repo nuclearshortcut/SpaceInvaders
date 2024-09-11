@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhx8x0bqnedqe"]
+
+[ext_resource type="Texture2D" uid="uid://blwwyypvm5k5b" path="res://Resources/SpaceInvaders.png" id="1_srl3f"]
+[ext_resource type="Script" path="res://Scenes/ui.gd" id="1_yxsgc"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_yxsgc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_top = 2.0
+offset_right = 42.0
+offset_bottom = 42.0
+scale = Vector2(2.86833, 2.86833)
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "LIVES"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Life1" type="Sprite2D" parent="VBoxContainer/HBoxContainer"]
+position = Vector2(5, 0)
+texture = ExtResource("1_srl3f")
+region_enabled = true
+region_rect = Rect2(68, 4, 9, 10)
+
+[node name="Life2" type="Sprite2D" parent="VBoxContainer/HBoxContainer"]
+position = Vector2(21, 0)
+texture = ExtResource("1_srl3f")
+region_enabled = true
+region_rect = Rect2(68, 4, 9, 10)
+
+[node name="Life3" type="Sprite2D" parent="VBoxContainer/HBoxContainer"]
+position = Vector2(37, 0)
+texture = ExtResource("1_srl3f")
+region_enabled = true
+region_rect = Rect2(68, 4, 9, 10)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -216.0
+offset_top = 2.0
+offset_right = -147.0
+offset_bottom = 25.0
+grow_horizontal = 0
+scale = Vector2(2.68, 2.68)
+size_flags_horizontal = 4
+text = "SCORE: 0"

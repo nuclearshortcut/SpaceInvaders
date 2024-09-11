@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://b6ny866tbyli4"]
+
+[ext_resource type="PackedScene" uid="uid://c5ywupg3a2tur" path="res://Scenes/basic_enemy.tscn" id="1_oqehx"]
+[ext_resource type="Script" path="res://t2_enemy.gd" id="2_2d2gk"]
+[ext_resource type="Texture2D" uid="uid://pc8uumwm815q" path="res://Resources/Aliens/T2Enemy1.png" id="3_4ltxl"]
+[ext_resource type="Texture2D" uid="uid://bgh34p7430mqm" path="res://Resources/Aliens/T2Enemy2.png" id="4_1yorc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sjxhe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_4ltxl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1yorc")
+}],
+"loop": true,
+"name": &"Fly",
+"speed": 5.0
+}]
+
+[node name="T2Enemy" instance=ExtResource("1_oqehx")]
+script = ExtResource("2_2d2gk")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." index="1"]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_sjxhe")
+animation = &"Fly"
+
+[node name="CollisionShape2D" parent="." index="2"]
+polygon = PackedVector2Array(-16, 9, -9, 9, -9, 12, 9, 12, 9, 9, 16, 9, 16, -1, 7, -10, -8, -10, -16, -1)
+
+[node name="LaserEmitter" type="Marker2D" parent="." index="4"]
+position = Vector2(0, 11)

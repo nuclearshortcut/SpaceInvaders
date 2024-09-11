@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://cg1u3ra8vgkpe"]
+
+[ext_resource type="Script" path="res://Scenes/projectile.gd" id="1_smyxv"]
+[ext_resource type="Texture2D" uid="uid://cket62rw406wo" path="res://Resources/Lasers/Laser1.png" id="1_swtwc"]
+[ext_resource type="Texture2D" uid="uid://m46iug8wi0nl" path="res://Resources/Lasers/Laser3.png.png" id="2_x2pcf"]
+[ext_resource type="Texture2D" uid="uid://bk4givo7r70hw" path="res://Resources/Lasers/Laser4.png" id="3_mymat"]
+[ext_resource type="Texture2D" uid="uid://o5e7d4d55x5f" path="res://Resources/Lasers/Laser5.png" id="4_tvov0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d2hmm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_swtwc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_x2pcf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_mymat")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tvov0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1yx4v"]
+radius = 2.0
+height = 4.0
+
+[node name="Projectile" type="Area2D"]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_smyxv")
+
+[node name="LaserImage" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_d2hmm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("CapsuleShape2D_1yx4v")
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

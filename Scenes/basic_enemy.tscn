@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5ywupg3a2tur"]
+
+[ext_resource type="Script" path="res://Scenes/basic_enemy.gd" id="1_vveob"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cjca4"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"Fly",
+"speed": 5.0
+}]
+
+[node name="BasicEnemy" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("1_vveob")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cjca4")
+animation = &"Fly"
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+
+[node name="MoveTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]

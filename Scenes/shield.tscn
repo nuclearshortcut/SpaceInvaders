@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://d2hkici8ax5eq"]
+
+[ext_resource type="Script" path="res://Shield.gd" id="1_rexky"]
+[ext_resource type="Texture2D" uid="uid://dkkgcwyvfiksy" path="res://Resources/Shield/Shield.png" id="2_1d4sv"]
+[ext_resource type="Texture2D" uid="uid://s4m2s67gol1j" path="res://Resources/Shield/D1.png" id="3_076jv"]
+[ext_resource type="Texture2D" uid="uid://bldc2uxg31bjb" path="res://Resources/Shield/D2.png" id="4_1k3dg"]
+[ext_resource type="Texture2D" uid="uid://b8aae0u1ochl5" path="res://Resources/Shield/D3.png" id="5_07j53"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ivces"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1d4sv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_076jv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1k3dg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_07j53")
+}],
+"loop": true,
+"name": &"Degrade",
+"speed": 5.0
+}]
+
+[node name="Shield" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 12
+script = ExtResource("1_rexky")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_ivces")
+animation = &"Degrade"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -1)
+polygon = PackedVector2Array(-24, -17, 24, -17, 39, -2, -39, -2)
